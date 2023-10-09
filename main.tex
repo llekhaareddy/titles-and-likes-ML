@@ -1,0 +1,85 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Predicting Medium Article Reads using KNN Regression and Sentence Transformer\\
+}
+
+\author{\IEEEauthorblockN{Chris Brokenshire}
+\IEEEauthorblockA{\textit{CSCI 416} \\
+\textit{William and Mary}\\
+Williamsburg, USA \\
+Cmbrokenshire@wm.edu}
+\and
+\IEEEauthorblockN{Lekha Reddy}
+\IEEEauthorblockA{\textit{CSCI 416} \\
+\textit{William and Mary}\\
+Williamsburg, USA \\
+Lkreddy@wm.edu}
+\and
+\IEEEauthorblockN{Matthew Berthoud}
+\IEEEauthorblockA{\textit{CSCI 416} \\
+\textit{William and Mary}\\
+Williamsburg, USA \\
+Mwberthoud@wm.edu}
+}
+
+\maketitle
+
+\begin{abstract}
+This document is a Project Proposal for a Final Project in Intro to Machine Learning (CSCI 416) at William and Mary
+\end{abstract}
+
+\section{Project Description}
+
+\subsection{Problem Statement}
+In the realm of media platforms like YouTube, Medium, Reddit, and Spotify, the title of content often serves as a pivotal predictor of its overall success and the intensity of user interactions. With this in mind, our project aims to harness the power of KNN (K-Nearest Neighbors) predictive modeling to forecast the level of interaction a Medium article might receive, based on the interactions past articles with similar titles have garnered.
+
+The true innovation of our project lies in our approach to defining "similarity." Traditionally, KNN regression relies on euclidean distance to measure closeness between data points. However, a groundbreaking AI technology known as the Sentence Transformer was introduced last year. This technology offers a metric called "cosine similarity," which quantifies the similarity between two strings. In our project, we're leveraging this cosine similarity as a substitute for the traditional euclidean distance in KNN regression, as it aids in defending our algorithm from the curse of dimensionality, to compute the “distance” between two titles of Medium articles. 
+
+The implication of our work is significant. By effectively quantifying string relationships, we're unlocking the potential to utilize KNN regression—one of the most potent algorithms in machine learning—as a predictive instrument.
+
+\subsection{Dataset}
+We are using a Kaggle data set of 6508 Medium articles published in 2019 from 7 different publications. The data is about 1.43 MB, excluding images, and contains information such as url, title, subtitle, image, claps, responses, reading time, publication and date. Our independent variable will be title appended to subtitle, and our dependent variable will be claps (Medium’s measure for likes). The link to the dataset is provided in the ‘References’ section of this report and a depiction of the tail of our dataset is provided under ‘Figures and Tables.’
+\section{Approach(es) To Be Applied}
+
+\subsection{Methodology}
+The more straightforward aspect of our project involves coding the Sentence Transformer KNN regression function. Essentially, this requires substituting the traditional euclidean distance with the sentence cosine similarity in the KNN algorithm. The foundational structure of this function can be referenced in the scikit-learn documentation.
+
+However, the crux of our endeavor lies in addressing and controlling potential biases. While titles play a pivotal role in user interactions, other factors such as the popularity of the publication, the date of article publication, reading duration, subtitles, and accompanying images can significantly influence engagement levels.
+
+
+To mitigate these biases, our approach is twofold: We'll narrow our focus to articles from a single publication, ensuring uniformity. Additionally, we'll only consider articles that fall within a specific reading time bracket. Likewise, to capture a holistic view, we'll concatenate the titles with their respective subtitles, providing a richer context for our model.
+
+Once our dataset meets these criteria, we'll partition it into training and testing subsets to fine-tune and validate our regression.
+
+\section{Figures and Tables}
+
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale=0.085]{IMG_9673.png}}
+\caption{Tail of original data set}
+\label{fig}
+\end{figure}
+
+
+\begin{thebibliography}{00}
+\bibitem{b1} Medium articles Dataset \\
+Link:https://www.kaggle.com/datasets/dorianlazar/medium-articles-dataset
+\bibitem{b2} Sentence Transformer \\
+Link: https://www.sbert.net/
+\end{thebibliography}
+\vspace{12pt}
+
+
+\end{document}
+
